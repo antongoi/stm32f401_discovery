@@ -125,7 +125,7 @@ void waitPCLK()
 {
 	while(1)
 	{
-		if(GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_15) != 0) { break;}	// PCLK frame rate
+		if(GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_15) != 0) { break;}	// PCLK byte rate
 	}
 }
 
@@ -228,12 +228,13 @@ void inputsignal()
 		LD3_OFF;
 		LD4_OFF;
 		LD5_OFF;
+		LD5_ON;
 		LD6_OFF;
 		while(1) {
 			if (testGlobalPixel.R > 230 && testGlobalPixel.G > 230 && testGlobalPixel.B > 230) LD4_ON;
 			if (testGlobalPixel.R < 30 && testGlobalPixel.G < 30 && testGlobalPixel.B < 30) LD6_ON;
 			if (testGlobalPixel.R < 100 && testGlobalPixel.G > 200 && testGlobalPixel.B < 100) LD3_ON;
-			if (testGlobalPixel.R < 100 && testGlobalPixel.G < 100 && testGlobalPixel.B > 200) LD5_ON;
+			//if (testGlobalPixel.R < 100 && testGlobalPixel.G < 100 && testGlobalPixel.B > 200) LD5_ON;
 
 			if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_15) != 0) break;
 		}
@@ -282,7 +283,6 @@ void button()
 		if(colorBits[i+2]==1) LD6_ON;
 		if(colorBits[i+3]==1) LD3_ON;
 //	}
-
 }
 
 int main(void)
